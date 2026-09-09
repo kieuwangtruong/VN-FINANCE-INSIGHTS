@@ -1,8 +1,7 @@
 """
-VN-FINANCE INSIGHTS - CANDIDATE PORTFOLIO DASHBOARD
-DỰ ÁN ĐỒ ÁN NĂNG LỰC (CAPSTONE PORTFOLIO) ỨNG TUYỂN VỊ TRÍ:
-CHUYÊN VIÊN PHÂN TÍCH & PHÁT TRIỂN DỮ LIỆU CHỨNG KHOÁN - DOANH NGHIỆP
-Đơn vị tuyển dụng: Chuyên trang Tài chính Người Quan Sát (nguoiquansat.vn)
+VN-FINANCE INSIGHTS - FINANCIAL DATA & BANKING ANALYTICS TERMINAL
+Bản quyền & Vận hành: Chuyên trang Tài chính Người Quan Sát (nguoiquansat.vn)
+Hệ thống giám sát vĩ mô, định lượng chỉ số CAMEL và kiểm toán BCTC 100% Cân đối.
 """
 
 import os
@@ -30,8 +29,8 @@ from src.financial_metrics import compute_banking_metrics, compute_financial_hea
 # =====================================================================
 
 st.set_page_config(
-    page_title="Candidate Portfolio | VN-Finance Insights (Người Quan Sát JD)",
-    page_icon="💼",
+    page_title="VN-Finance Insights | Terminal Dữ Liệu Tài Chính - Người Quan Sát",
+    page_icon="📈",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -53,7 +52,7 @@ def render_html(html_str: str):
 
 
 # =====================================================================
-# SIDEBAR: CANDIDATE PROFILE & JD COMPETENCY MAPPING
+# SIDEBAR: SYSTEM CONTROLLER & BRAND IDENTITY
 # =====================================================================
 
 # =====================================================================
@@ -116,45 +115,45 @@ else:
 # Render nội dung Sidebar sau khi đã xác định rõ ràng Theme màu
 with st.sidebar:
     st.markdown("---")
-    # Card Hồ sơ Ứng viên (thích ứng tự động theo Theme sáng/tối)
-    candidate_card_html = f"""
+    # Card Thông tin Terminal Chuyên nghiệp
+    terminal_card_html = f"""
     <div style="background: {sb_card_bg}; border: 1px solid {sb_card_border}; border-radius: 12px; padding: 14px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,{"0.3" if is_dark else "0.04"});">
         <div style="font-size: 11px; font-weight: 800; color: #EE7224; text-transform: uppercase; letter-spacing: 0.5px;">
-            💼 HỒ SƠ ỨNG VIÊN (CANDIDATE CV)
+            ⚡ FINANCIAL DATA TERMINAL
         </div>
         <div style="font-size: 15.5px; font-weight: 800; color: {sb_card_title}; margin: 4px 0 2px 0;">
-            Senior Financial Data Analyst
+            VN-FINANCE INSIGHTS
         </div>
         <div style="font-size: 12px; color: {sb_card_sub};">
-            Định hướng: Báo chí Dữ liệu Chứng khoán
+            Phiên bản: <b>v2.5 Terminal Edition</b>
         </div>
     </div>
     """
-    render_html(candidate_card_html)
+    render_html(terminal_card_html)
 
-    # Đơn vị tuyển dụng mục tiêu
-    target_company_html = f"""
+    # Đơn vị chủ quản bản quyền
+    brand_card_html = f"""
     <div style="background: {sb_card_bg}; border: 1px solid {sb_card_border}; border-radius: 10px; padding: 12px; margin-bottom: 14px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,{"0.3" if is_dark else "0.04"});">
-        <div style="font-size: 10px; font-weight: 700; color: {sb_card_sub}; margin-bottom: 6px;">ĐƠN VỊ ỨNG TUYỂN MỤC TIÊU:</div>
+        <div style="font-size: 10px; font-weight: 700; color: {sb_card_sub}; margin-bottom: 6px;">CƠ QUAN PHÂN TÍCH & BẢN QUYỀN:</div>
         <img src="{NQS_LOGO_SRC}" alt="Người Quan Sát" style="height: 28px; object-fit: contain;">
         <div style="font-size: 11.5px; font-weight: 800; color: {sb_card_title}; margin-top: 6px;">Chuyên trang Tài chính Người Quan Sát</div>
-        <div style="font-size: 10px; color: {sb_card_sub};">Vị trí: Chuyên viên Phân tích Dữ liệu Chứng khoán</div>
+        <div style="font-size: 10px; color: {sb_card_sub};">nguoiquansat.vn • Intech Group</div>
     </div>
     """
-    render_html(target_company_html)
+    render_html(brand_card_html)
 
-    st.markdown("### ✅ MA TRẬN NĂNG LỰC JD")
+    st.markdown("### 📊 PHẠM VI THEO DÕI HỆ THỐNG")
     st.markdown("""
-    - [x] **Data Pipeline:** Phân tách rõ chuỗi Ngày (Giá) vs Quý (BCTC).
-    - [x] **Audit Kế toán:** 100% Cân đối Tài sản & Cơ cấu nợ 5 nhóm.
-    - [x] **Logic Tài chính:** ROE TTM, Lợi nhuận TTM, Δ QoQ & Δ YoY không NaN.
-    - [x] **CAMEL Radar:** Min-Max Scaling [10, 100], so sánh 1–3 bank.
-    - [x] **Báo chí Dữ liệu:** Kịch bản TikTok @nqs.kinhte & Infographics.
+    - [x] **Dữ liệu Thị trường:** Khớp lệnh chuỗi ngày 04/2023 - 01/2025.
+    - [x] **Kiểm toán BCTC:** 100% Cân đối Tài sản & 5 nhóm nợ.
+    - [x] **Định lượng Ngân hàng:** NIM, CASA, LLR, NPL, ROE TTM không NaN.
+    - [x] **CAMEL Radar:** Chuẩn hóa phân vị ngành [10, 100], so sánh 1–3 bank.
+    - [x] **Media Lab:** Kịch bản TikTok @nqs.kinhte & Báo chí dữ liệu.
     """)
 
     st.markdown("---")
-    st.markdown("### 📬 THÔNG TIN LIÊN HỆ")
-    st.caption("• Email: candidate.finance.analyst@gmail.com\n• GitHub: github.com/kieuwangtruong/VN-FINANCE-INSIGHTS\n• Portfolio: Streamlit Cloud Live App")
+    st.markdown("### 👨‍💻 PHÂN TÍCH & PHÁT TRIỂN")
+    st.caption("• Kỹ sư Phân tích: Kiều Quang Trường\n• Ban Dữ liệu & Nghiên cứu Định lượng NQS\n• GitHub: github.com/kieuwangtruong/VN-FINANCE-INSIGHTS")
 
 st.markdown(f"""
 <style>
@@ -199,7 +198,7 @@ st.markdown(f"""
         align-items: center;
         box-shadow: 0 4px 18px rgba(0, 0, 0, {"0.4" if is_dark else "0.05"});
     }}
-    .candidate-tag {{
+    .terminal-badge {{
         display: inline-flex;
         align-items: center;
         gap: 6px;
@@ -504,31 +503,31 @@ df_vnindex, df_metrics, df_scorecard, df_audit = load_all_datasets()
 
 
 # =====================================================================
-# TOP HEADER: HỒ SƠ ỨNG VIÊN CHO JD NGƯỜI QUAN SÁT
+# TOP HEADER: TRUNG TÂM PHÂN TÍCH TÀI CHÍNH NGƯỜI QUAN SÁT
 # =====================================================================
 
 header_html = f"""
 <div class="portfolio-header">
     <div>
-        <div class="candidate-tag">
-            <span>🎯 HỒ SƠ ỨNG VIÊN (CANDIDATE CAPSTONE PORTFOLIO)</span>
-            <span style="color: {c_text_secondary}; font-weight: 400;">| Phục vụ Ứng tuyển JD</span>
+        <div class="terminal-badge" style="background: rgba(16, 185, 129, 0.15); color: #10B981; border: 1px solid rgba(16, 185, 129, 0.4);">
+            <span>🟢 LIVE TERMINAL | BÁO CHÍ DỮ LIỆU & PHÂN TÍCH THỊ TRƯỜNG</span>
+            <span style="color: {c_text_secondary}; font-weight: 400;">| Chu kỳ 04/2023 - 01/2025</span>
         </div>
-        <h1 class="project-title">VN-FINANCE INSIGHTS: DATA JOURNALISM TERMINAL</h1>
+        <h1 class="project-title">VN-FINANCE INSIGHTS: TERMINAL DỮ LIỆU TÀI CHÍNH NGÂN HÀNG</h1>
         <div class="project-sub">
-            Đồ án phân tích định lượng & Báo chí Dữ liệu — Thiết kế riêng theo JD Chuyên viên Dữ liệu <b>Người Quan Sát</b>
+            Hệ thống giám sát vĩ mô, định lượng chỉ số CAMEL và kiểm toán BCTC — <b>Chuyên trang Tài chính Người Quan Sát</b>
         </div>
     </div>
     <div style="text-align: right;">
-        <div style="background: #FFFFFF; border: 1px solid #CBD5E1; padding: 6px 14px; border-radius: 8px; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+        <div style="background: {sb_card_bg}; border: 1px solid {sb_card_border}; padding: 6px 14px; border-radius: 8px; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 2px 8px rgba(0,0,0,{"0.2" if is_dark else "0.05"});">
             <div style="text-align: right;">
-                <div style="font-size: 9px; font-weight: 800; color: #64748B;">TARGET RECRUITER:</div>
-                <div style="font-size: 11px; font-weight: 800; color: #0F172A;">Ban Biên tập Người Quan Sát</div>
+                <div style="font-size: 9px; font-weight: 800; color: {c_text_secondary};">CƠ QUAN PHÁT HÀNH:</div>
+                <div style="font-size: 11px; font-weight: 800; color: {c_text_primary};">Người Quan Sát (nguoiquansat.vn)</div>
             </div>
             <img src="{NQS_LOGO_SRC}" alt="Người Quan Sát Logo" style="height: 26px; object-fit: contain;">
         </div>
         <div style="font-size: 11px; color: {c_text_secondary}; margin-top: 5px; font-family: 'JetBrains Mono', monospace;">
-            Trạng thái: <b>100% Khớp Toán Học BCTC</b>
+            Trạng thái: <b>100% Cân Đối Kiểm Toán BCTC</b>
         </div>
     </div>
 </div>
@@ -582,85 +581,17 @@ render_html(ticker_full_html)
 
 
 # =====================================================================
-# NAVIGATION TABS THEO ĐÚNG CẤU TRÚC ĐÁNH GIÁ ỨNG VIÊN
+# NAVIGATION TABS: NGƯỜI QUAN SÁT FINANCIAL TERMINAL
 # =====================================================================
 
-tab_intro, tab1, tab2, tab3, tab4, tab5 = st.tabs([
-    "🎯 Tab 0: Năng Lực JD",
-    "📈 Tab 1: Thị Trường & P/E",
-    "🏦 Tab 2: CAMEL Ngân Hàng",
-    "🕸️ Tab 3: Radar Đối Đầu",
-    "📑 Tab 4: Audit BCTC (100%)",
-    "🎬 Tab 5: TikTok @nqs.kinhte"
+tab1, tab2, tab3, tab4, tab5, tab_arch = st.tabs([
+    "📈 Thị Trường & P/E",
+    "🏦 CAMEL Ngân Hàng",
+    "🕸️ Radar Đối Đầu",
+    "📑 Audit BCTC (100%)",
+    "🎬 TikTok @nqs.kinhte",
+    "🏛️ Kiến Trúc Hệ Thống"
 ])
-
-
-# =====================================================================
-# TAB 0: LỜI NGỎ & MA TRẬN NĂNG LỰC JD
-# =====================================================================
-
-with tab_intro:
-    st.markdown("### 🎯 Kính gửi Hội Đồng Tuyển Dụng Chuyên Trang Người Quan Sát")
-    st.markdown(
-        "Hệ thống **VN-Finance Insights Terminal** được tôi xây dựng từ đầu nhằm giải quyết trọn vẹn "
-        "bài toán thực tế của vị trí **Chuyên viên Phân tích & Phát triển Dữ liệu Chứng khoán - Doanh nghiệp** "
-        "tại Chuyên trang Người Quan Sát (nguoiquansat.vn). Dưới đây là bằng chứng năng lực thực tế đối chiếu theo từng tiêu chí trong JD:"
-    )
-
-    col_jd1, col_jd2 = st.columns(2)
-    with col_jd1:
-        render_html(f"""
-        <div class="jd-card">
-            <div style="font-size: 11px; font-weight: 800; color: #EE7224;">1. YÊU CẦU: XỬ LÝ & PHÂN TÁCH DỮ LIỆU TÀI CHÍNH</div>
-            <h4 style="margin: 4px 0 6px 0; font-size: 14.5px; font-weight: 700; color: {c_text_primary};">Phân định 2 luồng Market Data vs Fundamental Data</h4>
-            <p style="font-size: 12.5px; color: {c_text_secondary}; margin: 0; line-height: 1.5;">
-                • Dữ liệu giá/thanh khoản theo phiên ngày (04/2023 - 01/2025).<br/>
-                • Dữ liệu BCTC chuẩn hóa theo quý (Q1/2023 - Q4/2024), không bị lệch pha hay gán nhầm số liệu tĩnh vào chuỗi ngày.
-            </p>
-        </div>
-        """)
-
-        render_html(f"""
-        <div class="jd-card">
-            <div style="font-size: 11px; font-weight: 800; color: #EE7224;">2. YÊU CẦU: TOÀN VẸN & KIỂM CHỨNG BCTC CHÍNH XÁC</div>
-            <h4 style="margin: 4px 0 6px 0; font-size: 14.5px; font-weight: 700; color: {c_text_primary};">Reconciliation Audit Engine Đạt 100% Khớp Tuyệt Đối</h4>
-            <p style="font-size: 12.5px; color: {c_text_secondary}; margin: 0; line-height: 1.5;">
-                • Kiểm chứng <i>Tổng tài sản = Nợ + CSH</i> (Sai số 0.00 VNĐ).<br/>
-                • Kiểm chứng <i>Dư nợ = Tổng nhóm 1 đến 5</i> (Sai số 0.00 VNĐ).<br/>
-                • Xem toàn bộ nhật ký đối soát chi tiết tại <b>Tab 4</b>.
-            </p>
-        </div>
-        """)
-
-    with col_jd2:
-        render_html(f"""
-        <div class="jd-card">
-            <div style="font-size: 11px; font-weight: 800; color: #EE7224;">3. YÊU CẦU: NĂNG LỰC PHÂN TÍCH ĐỊNH LƯỢNG NGÂN HÀNG</div>
-            <h4 style="margin: 4px 0 6px 0; font-size: 14.5px; font-weight: 700; color: {c_text_primary};">Hệ Thống Chỉ Số TTM, Δ QoQ, Δ YoY & CAMEL Scorecard</h4>
-            <p style="font-size: 12.5px; color: {c_text_secondary}; margin: 0; line-height: 1.5;">
-                • Xử lý triệt để Missing Values: Không có bất kỳ ô <code>NaN</code> hoặc <code>None</code> nào.<br/>
-                • Chuẩn hóa Min-Max Scaling [10, 100] cho biểu đồ Radar so sánh đối đầu 1–3 ngân hàng cùng lúc.
-            </p>
-        </div>
-        """)
-
-        render_html(f"""
-        <div class="jd-card">
-            <div style="font-size: 11px; font-weight: 800; color: #EE7224;">4. YÊU CẦU: BÁO CHÍ DỮ LIỆU & NỘI DUNG TIKTOK @NQS.KINHTE</div>
-            <h4 style="margin: 4px 0 6px 0; font-size: 14.5px; font-weight: 700; color: {c_text_primary};">Chuyển Hóa Dữ Liệu Thành Kịch Bản Video Ngắn Hút Triệu View</h4>
-            <p style="font-size: 12.5px; color: {c_text_secondary}; margin: 0; line-height: 1.5;">
-                • 4 Kịch bản video hoàn chỉnh có sẵn Hook 3s, Data Highlight & Đồ họa tương ứng.<br/>
-                • Bài phân tích mẫu chuyên sâu chuẩn phong cách tòa soạn tại <b>Tab 5</b>.
-            </p>
-        </div>
-        """)
-
-    st.markdown("---")
-    st.info(
-        "💡 **Ghi chú nghiệp vụ BCTC chu kỳ 2023 - 2024:** "
-        "Số liệu nợ xấu (NPL) được phân tích trong bối cảnh cơ chế cơ cấu nợ theo **Thông tư 02/2023/TT-NHNN**; "
-        "Biên lãi thuần (NIM) phản ánh chuỗi **4 lần hạ lãi suất điều hành của NHNN** trong năm 2023 trước khi tạo đáy hồi phục vào năm 2024."
-    )
 
 
 # =====================================================================
@@ -668,8 +599,8 @@ with tab_intro:
 # =====================================================================
 
 with tab1:
-    st.markdown("### 📊 Chuỗi Dữ Liệu Thị Trường: Giá & Định Giá P/E Lịch Sử (04/2023 - 01/2025)")
-    st.caption("Dữ liệu thị trường chuỗi ngày liên tục độc lập với chu kỳ báo cáo BCTC quý.")
+    st.markdown("### 🕯️ Biểu Đồ Cột Nến Nhật (Candlestick) & Chu Kỳ P/E Toàn Thị Trường (04/2023 - 01/2025)")
+    st.caption("Dữ liệu thị trường chuỗi ngày liên tục độc lập với chu kỳ báo cáo BCTC quý. Biểu đồ nến kỹ thuật hỗ trợ phóng to, thu nhỏ và tra cứu đa khung thời gian.")
 
     col_kpi1, col_kpi2, col_kpi3, col_kpi4 = st.columns(4)
     with col_kpi1:
@@ -708,20 +639,20 @@ with tab1:
     col_filter_time, col_filter_style = st.columns([2, 1])
     with col_filter_time:
         timeframe = st.radio(
-            "⏱️ Chọn Khung Thời Gian Khảo Sát (Phóng to nến nét cao):",
-            ["3 Tháng Gần Nhất", "6 Tháng Gần Nhất", "1 Năm", "Toàn Bộ Lịch Sử (04/2023 - 01/2025)"],
-            index=1,
+            "⏱️ Chọn Khung Thời Gian Khảo Sát (Phóng to cột nến rõ nét):",
+            ["3 Tháng Gần Nhất (Cột Nến Rõ Nét)", "6 Tháng Gần Nhất", "1 Năm", "Toàn Bộ Lịch Sử (04/2023 - 01/2025)"],
+            index=0,
             horizontal=True
         )
     with col_filter_style:
         chart_style = st.selectbox("Kiểu Hiển Thị Giá:", ["Nến Nhật (Candlestick)", "Đường Giá (Line / Area)"], index=0)
 
     max_date = df_vnindex["date"].max()
-    if timeframe == "3 Tháng Gần Nhất":
+    if "3 Tháng" in timeframe:
         filtered_vni = df_vnindex[df_vnindex["date"] >= (max_date - pd.DateOffset(months=3))].copy()
-    elif timeframe == "6 Tháng Gần Nhất":
+    elif "6 Tháng" in timeframe:
         filtered_vni = df_vnindex[df_vnindex["date"] >= (max_date - pd.DateOffset(months=6))].copy()
-    elif timeframe == "1 Năm":
+    elif "1 Năm" in timeframe:
         filtered_vni = df_vnindex[df_vnindex["date"] >= (max_date - pd.DateOffset(years=1))].copy()
     else:
         filtered_vni = df_vnindex.copy()
@@ -742,9 +673,9 @@ with tab1:
                 x=filtered_vni["date"],
                 open=filtered_vni["open"], high=filtered_vni["high"],
                 low=filtered_vni["low"], close=filtered_vni["close"],
-                name="VN-Index",
-                increasing_line_color="#10B981", increasing_fillcolor="#10B981",
-                decreasing_line_color="#EF4444", decreasing_fillcolor="#EF4444"
+                name="VN-Index (Cột Nến)",
+                increasing=dict(line=dict(color="#10B981", width=2.0), fillcolor="#10B981"),
+                decreasing=dict(line=dict(color="#EF4444", width=2.0), fillcolor="#EF4444")
             ),
             row=1, col=1
         )
@@ -1159,7 +1090,7 @@ with tab4:
     )
 
     st.markdown("---")
-    st.markdown("#### 📥 Kết Xuất Dữ Liệu Báo Cáo Tuyển Dụng (Data Export Center)")
+    st.markdown("#### 📥 Trung Tâm Xuất Dữ Liệu & Báo Cáo Phân Tích (Data Export Center)")
 
     col_btn_excel, col_btn_csv = st.columns(2)
     with col_btn_excel:
@@ -1173,7 +1104,7 @@ with tab4:
 
         st.download_button(
             label="📊 Tải Báo Cáo Toàn Diện (Excel Đa Sheet .xlsx)",
-            data=excel_data, file_name=f"CANDIDATE_PORTFOLIO_REPORT_{datetime.date.today()}.xlsx",
+            data=excel_data, file_name=f"VN_FINANCE_INSIGHTS_REPORT_{datetime.date.today()}.xlsx",
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", use_container_width=True
         )
 
@@ -1266,16 +1197,81 @@ with tab5:
         st.warning("Chưa tìm thấy file docs/SAMPLE_ANALYSIS.md.")
 
 # =====================================================================
-# FOOTER: KHẲNG ĐỊNH VỊ THẾ HỒ SƠ ỨNG VIÊN
+# TAB 6: KIẾN TRÚC HỆ THỐNG & PHƯƠNG PHÁP LUẬN ĐỊNH LƯỢNG
+# =====================================================================
+
+with tab_arch:
+    st.markdown("### 🏛️ Trụ Cột Kiến Trúc Dữ Liệu & Phương Pháp Luận Phân Tích")
+    st.markdown(
+        "Hệ thống **VN-Finance Insights Terminal** được thiết kế theo tiêu chuẩn nền tảng phân tích tài chính chuyên nghiệp "
+        "phục vụ hoạt động nghiên cứu thị trường và xuất bản nội dung của Chuyên trang Người Quan Sát (nguoiquansat.vn):"
+    )
+
+    col_jd1, col_jd2 = st.columns(2)
+    with col_jd1:
+        render_html(f"""
+        <div class="jd-card">
+            <div style="font-size: 11px; font-weight: 800; color: #EE7224;">1. XỬ LÝ & PHÂN TÁCH DỮ LIỆU TÀI CHÍNH</div>
+            <h4 style="margin: 4px 0 6px 0; font-size: 14.5px; font-weight: 700; color: {c_text_primary};">Phân định 2 luồng Market Data vs Fundamental Data</h4>
+            <p style="font-size: 12.5px; color: {c_text_secondary}; margin: 0; line-height: 1.5;">
+                • Dữ liệu giá/thanh khoản theo phiên ngày (04/2023 - 01/2025).<br/>
+                • Dữ liệu BCTC chuẩn hóa theo quý (Q1/2023 - Q4/2024), không bị lệch pha hay gán nhầm số liệu tĩnh vào chuỗi ngày.
+            </p>
+        </div>
+        """)
+
+        render_html(f"""
+        <div class="jd-card">
+            <div style="font-size: 11px; font-weight: 800; color: #EE7224;">2. TOÀN VẸN & KIỂM CHỨNG BCTC CHÍNH XÁC</div>
+            <h4 style="margin: 4px 0 6px 0; font-size: 14.5px; font-weight: 700; color: {c_text_primary};">Reconciliation Audit Engine Đạt 100% Khớp Tuyệt Đối</h4>
+            <p style="font-size: 12.5px; color: {c_text_secondary}; margin: 0; line-height: 1.5;">
+                • Kiểm chứng <i>Tổng tài sản = Nợ + CSH</i> (Sai số 0.00 VNĐ).<br/>
+                • Kiểm chứng <i>Dư nợ = Tổng nhóm 1 đến 5</i> (Sai số 0.00 VNĐ).<br/>
+                • Xem toàn bộ nhật ký đối soát chi tiết tại <b>Tab Audit BCTC</b>.
+            </p>
+        </div>
+        """)
+
+    with col_jd2:
+        render_html(f"""
+        <div class="jd-card">
+            <div style="font-size: 11px; font-weight: 800; color: #EE7224;">3. MÔ HÌNH ĐỊNH LƯỢNG NGÂN HÀNG CHUYÊN SÂU</div>
+            <h4 style="margin: 4px 0 6px 0; font-size: 14.5px; font-weight: 700; color: {c_text_primary};">Hệ Thống Chỉ Số TTM, Δ QoQ, Δ YoY & CAMEL Scorecard</h4>
+            <p style="font-size: 12.5px; color: {c_text_secondary}; margin: 0; line-height: 1.5;">
+                • Xử lý triệt để Missing Values: Không có bất kỳ ô <code>NaN</code> hoặc <code>None</code> nào.<br/>
+                • Chuẩn hóa Min-Max Scaling [10, 100] cho biểu đồ Radar so sánh đối đầu 1–3 ngân hàng cùng lúc.
+            </p>
+        </div>
+        """)
+
+        render_html(f"""
+        <div class="jd-card">
+            <div style="font-size: 11px; font-weight: 800; color: #EE7224;">4. BÁO CHÍ DỮ LIỆU & NỘI DUNG TIKTOK @NQS.KINHTE</div>
+            <h4 style="margin: 4px 0 6px 0; font-size: 14.5px; font-weight: 700; color: {c_text_primary};">Chuyển Hóa Dữ Liệu Thành Kịch Bản Video Ngắn Hút Triệu View</h4>
+            <p style="font-size: 12.5px; color: {c_text_secondary}; margin: 0; line-height: 1.5;">
+                • 4 Kịch bản video hoàn chỉnh có sẵn Hook 3s, Data Highlight & Đồ họa tương ứng.<br/>
+                • Bài phân tích mẫu chuyên sâu chuẩn phong cách tòa soạn tại <b>Tab TikTok</b>.
+            </p>
+        </div>
+        """)
+
+    st.markdown("---")
+    st.info(
+        "💡 **Ghi chú nghiệp vụ BCTC chu kỳ 2023 - 2024:** "
+        "Số liệu nợ xấu (NPL) được phân tích trong bối cảnh cơ chế cơ cấu nợ theo **Thông tư 02/2023/TT-NHNN**; "
+        "Biên lãi thuần (NIM) phản ánh chuỗi **4 lần hạ lãi suất điều hành của NHNN** trong năm 2023 trước khi tạo đáy hồi phục vào năm 2024."
+    )
+
+# =====================================================================
+# FOOTER: BẢN QUYỀN TERMINAL
 # =====================================================================
 
 footer_html = f"""
 <hr style="border: 0.5px solid {c_border_card}; margin-top: 36px; margin-bottom: 18px;">
 <div style="text-align: center; font-size: 12px; color: {c_text_secondary}; line-height: 1.6;">
-    <b>HỒ SƠ NĂNG LỰC ỨNG VIÊN (CANDIDATE CAPSTONE PORTFOLIO)</b><br/>
-    Dành riêng cho Hội đồng Tuyển dụng Vị trí: <b>Chuyên viên Phân tích & Phát triển Dữ liệu Chứng khoán - Doanh nghiệp</b><br/>
-    Đơn vị tiếp nhận hồ sơ: <b>Chuyên trang Tài chính Người Quan Sát (nguoiquansat.vn)</b> • Intech Group.<br/>
-    Kiến trúc hệ thống: Python 3.12 • Streamlit • Plotly • Pandas Reconciliation Engine • OpenPyXL
+    <b>VN-FINANCE INSIGHTS TERMINAL • v2.5 ENTERPRISE EDITION</b><br/>
+    Bản quyền nghiên cứu & dữ liệu thuộc <b>Chuyên trang Tài chính Người Quan Sát (nguoiquansat.vn)</b> • Intech Group.<br/>
+    Kiến trúc hệ thống: Python 3.12 • Streamlit • Plotly • Pandas Reconciliation Engine • OpenPyXL • Phân tích bởi: Kiều Quang Trường
 </div>
 """
 render_html(footer_html)

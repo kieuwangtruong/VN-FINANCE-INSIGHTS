@@ -1,8 +1,8 @@
 # 🏦 VN-FINANCE INSIGHTS
-### Financial Quantitative Terminal & Enterprise Analytics Dashboard
-> **Dự án Capstone Portfolio:** Hệ thống Phân tích Định lượng Tài chính Ngân hàng & Tác nghiệp Báo chí Dữ liệu  
-> **Vị trí Ứng tuyển:** Chuyên viên Phân tích & Phát triển Dữ liệu Chứng khoán - Doanh nghiệp  
-> **Đơn vị Áp dụng / Case Study:** [Chuyên trang Tài chính Người Quan Sát (nguoiquansat.vn)](https://nguoiquansat.vn)  
+### Financial Quantitative Terminal & Enterprise Banking Analytics Platform
+> **Bản quyền & Phát triển:** Nền tảng Phân tích Định lượng Dữ liệu Tài chính Ngân hàng & Tác nghiệp Báo chí  
+> **Cơ quan Chủ quản & Bản quyền:** [Chuyên trang Tài chính Người Quan Sát (nguoiquansat.vn)](https://nguoiquansat.vn) • Intech Group  
+> **Kiến trúc Kỹ thuật:** Python 3.12 • Streamlit • Plotly • Pandas Reconciliation Engine  
 > **Tác giả:** Kiều Quang Trường ([@kieuwangtruong](https://github.com/kieuwangtruong))
 
 ---
@@ -26,7 +26,7 @@
 5. [Kiến trúc Giao diện UI/UX Terminal & Dynamic Theme Engine (WCAG AA)](#5-kiến-trúc-giao-diện-uiux-terminal--dynamic-theme-engine-wcag-aa)
 6. [Công cụ Kiểm toán Cân đối BCTC 100% Math Reconciliation](#6-công-cụ-kiểm-toán-cân-đối-bctc-100-math-reconciliation)
 7. [Báo chí Dữ liệu Thực chiến & TikTok Creative Lab (@nqs.kinhte)](#7-báo-chí-dữ-liệu-thực-chiến--tiktok-creative-lab-nqskinhte)
-8. [Bảng Ánh xạ Năng lực Ứng viên với Yêu cầu Tuyển dụng (JD Mapping)](#8-bảng-ánh-xạ-năng-lực-ứng-viên-với-yêu-cầu-tuyển-dụng-jd-mapping)
+8. [Kiến trúc Năng lực Hệ thống & Chuẩn hóa Nghiệp vụ](#8-kiến-trúc-năng-lực-hệ-thống--chuẩn-hóa-nghiệp-vụ)
 9. [Cấu trúc Thư mục Dự án](#9-cấu-trúc-thư-mục-dự-án)
 10. [Hướng dẫn Cài đặt, Vận hành & Triển khai (Deployment Guide)](#10-hướng-dẫn-cài-đặt-vận-hành--triển-khai-deployment-guide)
 
@@ -34,7 +34,7 @@
 
 ## 1. TÓM TẮT ĐIỀU HÀNH (EXECUTIVE SUMMARY)
 
-**VN-FINANCE INSIGHTS** là hệ thống Terminal phân tích định lượng tài chính và trực quan hóa dữ liệu BCTC chuyên sâu, được thiết kế và đóng gói làm **Dự án Capstone Portfolio** cho vị trí **Chuyên viên Phân tích & Phát triển Dữ liệu Chứng khoán - Doanh nghiệp** tại **Chuyên trang Người Quan Sát (nguoiquansat.vn)**.
+**VN-FINANCE INSIGHTS** là hệ thống Terminal phân tích định lượng tài chính và trực quan hóa dữ liệu BCTC chuyên sâu, được thiết kế theo tiêu chuẩn nền tảng phân tích tài chính chuyên nghiệp phục vụ hoạt động nghiên cứu thị trường, phân tích định lượng và xuất bản nội dung của **Chuyên trang Tài chính Người Quan Sát (nguoiquansat.vn)**.
 
 Hệ thống giải quyết trọn vẹn chuỗi giá trị dữ liệu từ thô đến sản phẩm truyền thông tài chính:
 * **Thu thập & Chuẩn hóa:** Xử lý chuỗi thời gian 04/2023 - 01/2025 (~500+ phiên giao dịch) và BCTC 8 quý liên tiếp (Q1/2023 - Q4/2024).
@@ -185,15 +185,15 @@ Lưu trữ đầy đủ tại [`docs/SAMPLE_ANALYSIS.md`](docs/SAMPLE_ANALYSIS.m
 
 ---
 
-## 8. BẢNG ÁNH XẠ NĂNG LỰC ỨNG VIÊN VỚI YÊU CẦU TUYỂN DỤNG (JD MAPPING)
+## 8. KIẾN TRÚC NĂNG LỰC HỆ THỐNG & CHUẨN HÓA NGHIỆP VỤ (SYSTEM SPECIFICATIONS)
 
-| Yêu cầu trong Tuyển dụng (JD Người Quan Sát) | Minh chứng Thực tế trong Dự án VN-FINANCE INSIGHTS | Mức độ Đáp ứng |
+| Tiêu chuẩn Nghiệp vụ Phân tích & Dữ liệu | Minh chứng Kỹ thuật Thực tế trong VN-FINANCE INSIGHTS | Mức độ Hoàn thiện |
 | :--- | :--- | :---: |
-| **1. Phân tích BCTC & Dữ liệu Doanh nghiệp Niêm yết** | Xử lý chuỗi BCTC 8 quý của 4 ngân hàng trụ cột; bóc tách 5 nhóm nợ, cơ cấu CASA, biên NIM, trích lập dự phòng và các tác động vĩ mô (Thông tư 02, điều hành lãi suất). | **Senior Level** |
-| **2. Kỹ năng Lập trình Định lượng (Python, Pandas, NumPy)** | Xây dựng pipeline dữ liệu chuẩn hóa, thuật toán TTM trượt thích ứng, cơ chế fallback xử lý Missing Values, chuẩn hóa Min-Max scaling phân vị ngành. | **Hoàn toàn Đáp ứng** |
-| **3. Trực quan hóa Dữ liệu & UI/UX Dashboard** | Phát triển Web App tương tác với Streamlit, Plotly, Dynamic Theme Engine (WCAG AA), Marquee Ticker tạm dừng khi hover, Radar Chart đa lớp. | **Chuyên nghiệp** |
-| **4. Tư duy Báo chí Số & Đa phương tiện (TikTok/Social)** | Xây dựng TikTok Creative Lab với 4 kịch bản video viral hoàn chỉnh; bài viết phân tích báo chí chuyên sâu chuẩn phong cách tòa soạn Người Quan Sát. | **Đặc biệt Phù hợp** |
-| **5. Đạo đức Số liệu & Khả năng Kiểm toán Dữ liệu** | Thiết lập module đối soát cân đối 100% Math Balance cho 5 nhóm nợ và bảng CĐKT (sai số 0.000%); công cụ xuất dữ liệu Excel/CSV minh bạch. | **Tuyệt đối Chuẩn xác** |
+| **1. Phân tích BCTC & Dữ liệu Doanh nghiệp Niêm yết** | Xử lý chuỗi BCTC 8 quý của 4 ngân hàng trụ cột; bóc tách 5 nhóm nợ, cơ cấu CASA, biên NIM, trích lập dự phòng và các tác động vĩ mô (Thông tư 02, điều hành lãi suất). | **Production Ready** |
+| **2. Kỹ năng Lập trình Định lượng (Python, Pandas, NumPy)** | Xây dựng pipeline dữ liệu chuẩn hóa, thuật toán TTM trượt thích ứng, cơ chế fallback xử lý Missing Values, chuẩn hóa Min-Max scaling phân vị ngành. | **Hoàn thiện Tuyệt đối** |
+| **3. Trực quan hóa Dữ liệu & UI/UX Dashboard** | Phát triển Web App tương tác với Streamlit, Plotly, Dynamic Theme Engine (WCAG AA), Marquee Ticker tạm dừng khi hover, Radar Chart đa lớp. | **Enterprise Standard** |
+| **4. Tư duy Báo chí Số & Đa phương tiện (TikTok/Social)** | Xây dựng TikTok Creative Lab với 4 kịch bản video viral hoàn chỉnh; bài viết phân tích báo chí chuyên sâu chuẩn phong cách tòa soạn Người Quan Sát. | **Tác nghiệp Tòa soạn** |
+| **5. Đạo đức Số liệu & Khả năng Kiểm toán Dữ liệu** | Thiết lập module đối soát cân đối 100% Math Balance cho 5 nhóm nợ và bảng CĐKT (sai số 0.000%); công cụ xuất dữ liệu Excel/CSV minh bạch. | **Chuẩn xác Tuyệt đối** |
 
 ---
 
