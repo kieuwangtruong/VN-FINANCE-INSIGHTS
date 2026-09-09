@@ -679,8 +679,8 @@ with tab1:
 
     fig_vni = make_subplots(
         rows=2, cols=1, shared_xaxes=True,
-        vertical_spacing=0.03,
-        row_heights=[0.72, 0.28],
+        vertical_spacing=0.08,
+        row_heights=[0.70, 0.30],
         subplot_titles=(f"Diễn Biến Kỹ Thuật VN-Index ({timeframe})", "Khối Lượng Khớp Lệnh (Volume) & MA20 Volume")
     )
 
@@ -728,13 +728,35 @@ with tab1:
 
     fig_vni.update_layout(
         template=plotly_template, plot_bgcolor=plot_bgcolor, paper_bgcolor=paper_bgcolor,
-        height=580, margin=dict(l=30, r=30, t=40, b=20), xaxis_rangeslider_visible=False,
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
-        hovermode="x unified"
+        height=600, margin=dict(l=40, r=40, t=55, b=30), xaxis_rangeslider_visible=False,
+        legend=dict(
+            orientation="h", yanchor="bottom", y=1.04, xanchor="right", x=1,
+            font=dict(size=11, color=c_text_primary, family="Plus Jakarta Sans"),
+            bgcolor="rgba(0,0,0,0)"
+        ),
+        hovermode="x",
+        hoverlabel=dict(
+            bgcolor=c_bg_card, font_size=11.5, font_family="JetBrains Mono, monospace",
+            font_color=c_text_primary, bordercolor=c_accent_orange
+        )
     )
-    fig_vni.update_yaxes(title_text="Điểm Số", row=1, col=1, gridcolor=grid_color)
-    fig_vni.update_yaxes(title_text="Triệu CP", row=2, col=1, gridcolor=grid_color)
-    fig_vni.update_xaxes(gridcolor=grid_color)
+    fig_vni.update_annotations(
+        font=dict(family="Plus Jakarta Sans, sans-serif", size=13, color=c_text_primary)
+    )
+    fig_vni.update_yaxes(
+        title_text="Điểm Số", row=1, col=1, gridcolor=grid_color,
+        title_font=dict(size=12, color=c_text_primary, family="Plus Jakarta Sans"),
+        tickfont=dict(family="JetBrains Mono, monospace", size=10.5, color=c_text_secondary)
+    )
+    fig_vni.update_yaxes(
+        title_text="Triệu CP", row=2, col=1, gridcolor=grid_color,
+        title_font=dict(size=12, color=c_text_primary, family="Plus Jakarta Sans"),
+        tickfont=dict(family="JetBrains Mono, monospace", size=10.5, color=c_text_secondary)
+    )
+    fig_vni.update_xaxes(
+        gridcolor=grid_color,
+        tickfont=dict(family="JetBrains Mono, monospace", size=10.5, color=c_text_secondary)
+    )
     st.plotly_chart(fig_vni, use_container_width=True)
 
     # 2. Định giá P/E Lịch sử & Dải Định giá
@@ -747,15 +769,45 @@ with tab1:
         fill="tozeroy", fillcolor="rgba(238, 114, 36, 0.08)"
     ))
 
-    fig_pe.add_hline(y=11.5, line_dash="dash", line_color="#10B981", annotation_text="Vùng Rất Rẻ (<11.5x)", annotation_position="top right")
-    fig_pe.add_hline(y=14.0, line_dash="dash", line_color="#F59E0B", annotation_text="Trung Vị Định Giá (14.0x)", annotation_position="top right")
-    fig_pe.add_hline(y=16.5, line_dash="dash", line_color="#EF4444", annotation_text="Vùng Quá Nhiệt (>16.5x)", annotation_position="top right")
+    # Tách biệt vị trí 3 mốc định giá để chữ không bị chồng lên nhau
+    fig_pe.add_hline(
+        y=16.5, line_dash="dash", line_color="#EF4444", line_width=1.5,
+        annotation_text="  Vùng Quá Nhiệt (>16.5x)  ", annotation_position="top left",
+        annotation_font=dict(size=10.5, color="#EF4444", family="JetBrains Mono"),
+        annotation_bgcolor="rgba(239, 68, 68, 0.12)"
+    )
+    fig_pe.add_hline(
+        y=14.0, line_dash="dash", line_color="#F59E0B", line_width=1.5,
+        annotation_text="  Trung Vị Định Giá (14.0x)  ", annotation_position="bottom right",
+        annotation_font=dict(size=10.5, color="#F59E0B", family="JetBrains Mono"),
+        annotation_bgcolor="rgba(245, 158, 11, 0.12)"
+    )
+    fig_pe.add_hline(
+        y=11.5, line_dash="dash", line_color="#10B981", line_width=1.5,
+        annotation_text="  Vùng Rất Rẻ (<11.5x)  ", annotation_position="bottom left",
+        annotation_font=dict(size=10.5, color="#10B981", family="JetBrains Mono"),
+        annotation_bgcolor="rgba(16, 185, 129, 0.12)"
+    )
 
+    min_pe = df_vnindex["market_pe"].min()
+    max_pe = df_vnindex["market_pe"].max()
     fig_pe.update_layout(
         template=plotly_template, plot_bgcolor=plot_bgcolor, paper_bgcolor=paper_bgcolor,
-        height=350, margin=dict(l=30, r=30, t=30, b=20),
-        yaxis=dict(title="Hệ số P/E (Lần)", gridcolor=grid_color), xaxis=dict(gridcolor=grid_color),
-        hovermode="x"
+        height=360, margin=dict(l=40, r=40, t=35, b=30),
+        yaxis=dict(
+            title=dict(text="Hệ số P/E (Lần)", font=dict(size=12, color=c_text_primary, family="Plus Jakarta Sans")),
+            gridcolor=grid_color, range=[min_pe * 0.92, max_pe * 1.08],
+            tickfont=dict(family="JetBrains Mono, monospace", size=10.5, color=c_text_secondary)
+        ),
+        xaxis=dict(
+            gridcolor=grid_color,
+            tickfont=dict(family="JetBrains Mono, monospace", size=10.5, color=c_text_secondary)
+        ),
+        hovermode="x",
+        hoverlabel=dict(
+            bgcolor=c_bg_card, font_size=11.5, font_family="JetBrains Mono, monospace",
+            font_color=c_text_primary, bordercolor=c_accent_orange
+        )
     )
     st.plotly_chart(fig_pe, use_container_width=True)
 
@@ -780,6 +832,11 @@ with tab2:
 
     # 1. 2D SCATTER MATRIX: NIM vs NPL with CASA bubble size
     st.markdown("#### 🎯 Ma Trận Chiến Lược: Biên Lãi Thuần (NIM) vs Tỷ Lệ Nợ Xấu (NPL)")
+    min_npl = df_filtered_period["npl_ratio"].min()
+    max_npl = df_filtered_period["npl_ratio"].max()
+    min_nim = df_filtered_period["nim"].min()
+    max_nim = df_filtered_period["nim"].max()
+
     fig_scatter = px.scatter(
         df_filtered_period,
         x="npl_ratio", y="nim", size="casa_ratio", color="symbol", text="symbol",
@@ -791,48 +848,105 @@ with tab2:
         labels={"npl_ratio": "Tỷ lệ Nợ xấu NPL (%)", "nim": "Biên lãi thuần NIM (%)", "casa_ratio": "Tỷ lệ CASA (%)"},
         color_discrete_map={"VCB": "#10B981", "MBB": "#0284C7", "TCB": "#EE7224", "BID": "#8B5CF6"}
     )
-    fig_scatter.update_traces(textposition="top center", marker=dict(sizemin=20, line=dict(width=2, color="#FFFFFF" if is_dark else "#0F172A")))
+    fig_scatter.update_traces(
+        textposition="top center",
+        textfont=dict(family="Plus Jakarta Sans, sans-serif", size=13, color=c_text_primary),
+        marker=dict(sizemin=22, line=dict(width=2, color="#FFFFFF" if is_dark else "#0F172A"))
+    )
     fig_scatter.update_layout(
         template=plotly_template, plot_bgcolor=plot_bgcolor, paper_bgcolor=paper_bgcolor,
-        height=460, xaxis=dict(title="Tỷ lệ Nợ Xấu NPL (%) [← An toàn]", gridcolor=grid_color),
-        yaxis=dict(title="Biên Lãi Thuần NIM (%) [↑ Sinh lời]", gridcolor=grid_color),
-        margin=dict(l=30, r=30, t=30, b=20)
+        height=480,
+        xaxis=dict(
+            title=dict(text="Tỷ lệ Nợ Xấu NPL (%) [← Càng Thấp Càng An Toàn]", font=dict(size=12, color=c_text_primary, family="Plus Jakarta Sans")),
+            gridcolor=grid_color,
+            range=[max(0.0, min_npl - 0.35), max_npl + 0.45],
+            tickfont=dict(family="JetBrains Mono, monospace", size=10.5, color=c_text_secondary)
+        ),
+        yaxis=dict(
+            title=dict(text="Biên Lãi Thuần NIM (%) [↑ Càng Cao Càng Sinh Lời]", font=dict(size=12, color=c_text_primary, family="Plus Jakarta Sans")),
+            gridcolor=grid_color,
+            range=[max(0.0, min_nim - 0.45), max_nim + 0.55],
+            tickfont=dict(family="JetBrains Mono, monospace", size=10.5, color=c_text_secondary)
+        ),
+        margin=dict(l=40, r=40, t=40, b=30),
+        legend=dict(
+            orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1,
+            font=dict(family="Plus Jakarta Sans", size=11, color=c_text_primary),
+            bgcolor="rgba(0,0,0,0)"
+        )
     )
     st.plotly_chart(fig_scatter, use_container_width=True)
 
     col_chart_llr, col_chart_roe = st.columns(2)
     with col_chart_llr:
         st.markdown("#### 🛡️ Tỷ Lệ Bao Phủ Nợ Xấu LLR (%) - 'Đệm Dự Phòng'")
+        max_llr = df_filtered_period["llr_ratio"].max()
         fig_llr = px.bar(
             df_filtered_period.sort_values(by="llr_ratio", ascending=False),
             x="symbol", y="llr_ratio", color="symbol", text="llr_ratio",
             color_discrete_map={"VCB": "#10B981", "MBB": "#0284C7", "TCB": "#EE7224", "BID": "#8B5CF6"}
         )
-        fig_llr.add_hline(y=100, line_dash="dash", line_color="#EF4444", annotation_text="Ngưỡng Chuẩn Basel (100%)")
-        fig_llr.update_traces(texttemplate='%{text:.1f}%', textposition='outside')
+        fig_llr.add_hline(
+            y=100, line_dash="dash", line_color="#EF4444", line_width=1.5,
+            annotation_text="  Chuẩn Basel An Toàn (100%)  ",
+            annotation_position="top left",
+            annotation_font=dict(size=10, color="#EF4444", family="JetBrains Mono"),
+            annotation_bgcolor="rgba(239, 68, 68, 0.1)"
+        )
+        fig_llr.update_traces(
+            texttemplate='<b>%{text:.1f}%</b>', textposition='outside',
+            textfont=dict(family="JetBrains Mono, monospace", size=11.5, color=c_text_primary),
+            cliponaxis=False
+        )
         fig_llr.update_layout(
             template=plotly_template, plot_bgcolor=plot_bgcolor, paper_bgcolor=paper_bgcolor,
-            height=340, margin=dict(l=20, r=20, t=30, b=20), yaxis=dict(title="Tỷ lệ LLR (%)", gridcolor=grid_color), showlegend=False
+            height=360, margin=dict(l=30, r=30, t=45, b=30),
+            yaxis=dict(
+                title=dict(text="Tỷ lệ LLR (%)", font=dict(size=12, color=c_text_primary, family="Plus Jakarta Sans")),
+                gridcolor=grid_color, range=[0, max_llr * 1.25],
+                tickfont=dict(family="JetBrains Mono, monospace", size=10.5, color=c_text_secondary)
+            ),
+            xaxis=dict(title="", tickfont=dict(family="Plus Jakarta Sans, sans-serif", size=12, color=c_text_primary)),
+            showlegend=False
         )
         st.plotly_chart(fig_llr, use_container_width=True)
 
     with col_chart_roe:
         st.markdown("#### ⚡ Hiệu Quả Sinh Lời ROE TTM (%) & CASA (%)")
         fig_roe = go.Figure()
+        # Đưa sang biểu đồ cột đôi cạnh nhau (Grouped Bar) để triệt tiêu hoàn toàn hiện tượng chữ đè chữ
         fig_roe.add_trace(go.Bar(
             x=df_filtered_period["symbol"], y=df_filtered_period["roe_ttm"],
             name="ROE TTM (%)", marker_color="#EE7224",
-            text=df_filtered_period["roe_ttm"].apply(lambda x: f"{x:.1f}%"), textposition="outside"
+            text=df_filtered_period["roe_ttm"].apply(lambda x: f"<b>{x:.1f}%</b>"),
+            textposition="outside",
+            textfont=dict(family="JetBrains Mono, monospace", size=11, color=c_text_primary),
+            cliponaxis=False
         ))
-        fig_roe.add_trace(go.Scatter(
+        fig_roe.add_trace(go.Bar(
             x=df_filtered_period["symbol"], y=df_filtered_period["casa_ratio"],
-            name="CASA (%)", mode="lines+markers+text", marker=dict(size=10, color="#10B981"),
-            line=dict(width=2.5), text=df_filtered_period["casa_ratio"].apply(lambda x: f"{x:.1f}%"), textposition="top center"
+            name="Tỷ Lệ CASA (%)", marker_color="#10B981",
+            text=df_filtered_period["casa_ratio"].apply(lambda x: f"<b>{x:.1f}%</b>"),
+            textposition="outside",
+            textfont=dict(family="JetBrains Mono, monospace", size=11, color=c_text_primary),
+            cliponaxis=False
         ))
+        max_roe_val = max(df_filtered_period["roe_ttm"].max(), df_filtered_period["casa_ratio"].max())
         fig_roe.update_layout(
+            barmode="group",
             template=plotly_template, plot_bgcolor=plot_bgcolor, paper_bgcolor=paper_bgcolor,
-            height=340, margin=dict(l=20, r=20, t=30, b=20), yaxis=dict(title="Tỷ lệ (%)", gridcolor=grid_color),
-            legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
+            height=360, margin=dict(l=30, r=30, t=45, b=30),
+            yaxis=dict(
+                title=dict(text="Tỷ lệ (%)", font=dict(size=12, color=c_text_primary, family="Plus Jakarta Sans")),
+                gridcolor=grid_color, range=[0, max_roe_val * 1.25],
+                tickfont=dict(family="JetBrains Mono, monospace", size=10.5, color=c_text_secondary)
+            ),
+            xaxis=dict(title="", tickfont=dict(family="Plus Jakarta Sans, sans-serif", size=12, color=c_text_primary)),
+            legend=dict(
+                orientation="h", yanchor="bottom", y=1.04, xanchor="right", x=1,
+                font=dict(family="Plus Jakarta Sans", size=11, color=c_text_primary),
+                bgcolor="rgba(0,0,0,0)"
+            )
         )
         st.plotly_chart(fig_roe, use_container_width=True)
 
@@ -895,35 +1009,57 @@ with tab3:
                 "BID": dict(line="#8B5CF6", fill="rgba(139, 92, 246, 0.2)")
             }
 
-            categories = [
+            categories_keys = [
                 "C - Đệm Dự Phòng (LLR)",
                 "A - An Toàn Nợ (NPL)",
                 "M - Vốn Rẻ (CASA)",
                 "E - Sinh Lời (ROE TTM)",
                 "L - Biên Lãi Thuần (NIM)"
             ]
+            # Nhãn 2 dòng ngắn gọn, chữ to rõ ràng, không bị co kéo hay đè lên viền
+            categories_display = [
+                "<b>C - DỰ PHÒNG</b><br><span style='font-size:10.5px;'>LLR Bao Phủ</span>",
+                "<b>A - AN TOÀN NỢ</b><br><span style='font-size:10.5px;'>100 - NPL</span>",
+                "<b>M - VỐN RẺ</b><br><span style='font-size:10.5px;'>Tỷ lệ CASA</span>",
+                "<b>E - SINH LỜI</b><br><span style='font-size:10.5px;'>ROE TTM</span>",
+                "<b>L - BIÊN LÃI</b><br><span style='font-size:10.5px;'>NIM Năm Hóa</span>"
+            ]
 
             for b_sym in benchmark_banks:
                 b_rec = df_metrics[(df_metrics["symbol"] == b_sym) & (df_metrics["period"] == radar_period)]
                 if not b_rec.empty:
                     dim_dict = compute_camel_radar_dimensions(b_rec.iloc[0])
-                    dim_values = [dim_dict[cat] for cat in categories]
+                    dim_values = [dim_dict[cat] for cat in categories_keys]
                     cfg = bank_color_map.get(b_sym, dict(line="#EE7224", fill="rgba(238, 114, 36, 0.2)"))
 
                     fig_multi_radar.add_trace(go.Scatterpolar(
-                        r=dim_values, theta=categories, fill='toself', name=b_sym,
+                        r=dim_values, theta=categories_display, fill='toself', name=f"{b_sym} ({b_rec.iloc[0]['bank_name']})",
                         line=dict(color=cfg["line"], width=2.5), fillcolor=cfg["fill"]
                     ))
 
             fig_multi_radar.update_layout(
                 polar=dict(
-                    radialaxis=dict(visible=True, range=[0, 100], color=polar_radial, gridcolor=grid_color),
-                    angularaxis=dict(color=c_text_primary, gridcolor=grid_color),
+                    radialaxis=dict(
+                        visible=True, range=[0, 108],
+                        tickvals=[20, 40, 60, 80, 100],
+                        ticktext=["20", "40", "60", "80", "100"],
+                        angle=45,  # Xoay nhãn giá trị sang góc 45 độ để không đè vào chữ trên trục chính
+                        tickfont=dict(size=9, color=polar_radial, family="JetBrains Mono"),
+                        gridcolor=grid_color, showline=False
+                    ),
+                    angularaxis=dict(
+                        tickfont=dict(size=11, color=c_text_primary, family="Plus Jakarta Sans"),
+                        gridcolor=grid_color, rotation=90, direction="clockwise"
+                    ),
                     bgcolor=polar_bg
                 ),
                 template=plotly_template, paper_bgcolor=paper_bgcolor,
-                height=420, margin=dict(l=40, r=40, t=30, b=30),
-                legend=dict(orientation="h", yanchor="bottom", y=1.05, xanchor="center", x=0.5)
+                height=480, margin=dict(l=75, r=75, t=60, b=50),
+                legend=dict(
+                    orientation="h", yanchor="bottom", y=1.08, xanchor="center", x=0.5,
+                    font=dict(family="Plus Jakarta Sans", size=11, color=c_text_primary),
+                    bgcolor="rgba(0,0,0,0)"
+                )
             )
             st.plotly_chart(fig_multi_radar, use_container_width=True)
 
