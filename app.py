@@ -56,34 +56,11 @@ def render_html(html_str: str):
 # SIDEBAR: CANDIDATE PROFILE & JD COMPETENCY MAPPING
 # =====================================================================
 
+# =====================================================================
+# 1. THEME CONTROLLER & COLOR TOKENS (WCAG AA)
+# =====================================================================
+
 with st.sidebar:
-    # Card Hồ sơ Ứng viên
-    candidate_card_html = f"""
-    <div style="background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%); border: 1px solid #334155; border-radius: 12px; padding: 14px; margin-bottom: 12px;">
-        <div style="font-size: 11px; font-weight: 800; color: #EE7224; text-transform: uppercase; letter-spacing: 0.5px;">
-            💼 HỒ SƠ ỨNG VIÊN (CANDIDATE CV)
-        </div>
-        <div style="font-size: 16px; font-weight: 800; color: #F8FAFC; margin: 4px 0 2px 0;">
-            Senior Financial Data Analyst
-        </div>
-        <div style="font-size: 12px; color: #94A3B8;">
-            Định hướng: Báo chí Dữ liệu Chứng khoán
-        </div>
-    </div>
-    """
-    render_html(candidate_card_html)
-
-    # Đơn vị tuyển dụng mục tiêu
-    target_company_html = f"""
-    <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 10px; margin-bottom: 14px; text-align: center;">
-        <div style="font-size: 10px; font-weight: 700; color: #64748B; margin-bottom: 4px;">ĐƠN VỊ ỨNG TUYỂN MỤC TIÊU:</div>
-        <img src="{NQS_LOGO_SRC}" alt="Người Quan Sát" style="height: 28px; object-fit: contain;">
-        <div style="font-size: 11px; font-weight: 800; color: #0F172A; margin-top: 4px;">Chuyên trang Tài chính Người Quan Sát</div>
-        <div style="font-size: 10px; color: #64748B;">Vị trí: Chuyên viên Phân tích Dữ liệu Chứng khoán</div>
-    </div>
-    """
-    render_html(target_company_html)
-
     st.markdown("### 🎨 TÙY BIẾN GIAO DIỆN")
     theme_mode = st.radio(
         "Chế độ hiển thị (Theme):",
@@ -92,25 +69,6 @@ with st.sidebar:
         help="Chuyển đổi giao diện tức thì với độ tương phản WCAG AA ≥ 4.5:1."
     )
     is_dark = "Dark" in theme_mode
-
-    st.markdown("---")
-    st.markdown("### ✅ MA TRẬN NĂNG LỰC JD")
-    st.markdown("""
-    - [x] **Data Pipeline:** Phân tách rõ chuỗi Ngày (Giá) vs Quý (BCTC).
-    - [x] **Audit Kế toán:** 100% Cân đối Tài sản & Cơ cấu nợ 5 nhóm.
-    - [x] **Logic Tài chính:** ROE TTM, Lợi nhuận TTM, Δ QoQ & Δ YoY không NaN.
-    - [x] **CAMEL Radar:** Min-Max Scaling [10, 100], so sánh 1–3 bank.
-    - [x] **Báo chí Dữ liệu:** Kịch bản TikTok @nqs.kinhte & Infographics.
-    """)
-
-    st.markdown("---")
-    st.markdown("### 📬 THÔNG TIN LIÊN HỆ")
-    st.caption("• Email: candidate.finance.analyst@gmail.com\n• GitHub: github.com/candidate/vn-finance-insights\n• Portfolio: Streamlit Cloud Live App")
-
-
-# =====================================================================
-# CSS THEME SYSTEM HOÀN CHỈNH (WCAG AA CONTRAST & ZERO COLOR COLLISION)
-# =====================================================================
 
 if is_dark:
     # DARK MODE TOKENS (Obsidian Navy Theme)
@@ -129,6 +87,10 @@ if is_dark:
     grid_color = "#21262D"
     polar_bg = "#0E1117"
     polar_radial = "#8B949E"
+    sb_card_bg = "#161B22"
+    sb_card_border = "#30363D"
+    sb_card_title = "#F0F6FC"
+    sb_card_sub = "#8B949E"
 else:
     # LIGHT MODE TOKENS (Financial Times Clean White)
     c_bg_app = "#F8FAFC"
@@ -146,6 +108,53 @@ else:
     grid_color = "#F1F5F9"
     polar_bg = "#FAFAFA"
     polar_radial = "#64748B"
+    sb_card_bg = "#FFFFFF"
+    sb_card_border = "#CBD5E1"
+    sb_card_title = "#0F172A"
+    sb_card_sub = "#475569"
+
+# Render nội dung Sidebar sau khi đã xác định rõ ràng Theme màu
+with st.sidebar:
+    st.markdown("---")
+    # Card Hồ sơ Ứng viên (thích ứng tự động theo Theme sáng/tối)
+    candidate_card_html = f"""
+    <div style="background: {sb_card_bg}; border: 1px solid {sb_card_border}; border-radius: 12px; padding: 14px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,{"0.3" if is_dark else "0.04"});">
+        <div style="font-size: 11px; font-weight: 800; color: #EE7224; text-transform: uppercase; letter-spacing: 0.5px;">
+            💼 HỒ SƠ ỨNG VIÊN (CANDIDATE CV)
+        </div>
+        <div style="font-size: 15.5px; font-weight: 800; color: {sb_card_title}; margin: 4px 0 2px 0;">
+            Senior Financial Data Analyst
+        </div>
+        <div style="font-size: 12px; color: {sb_card_sub};">
+            Định hướng: Báo chí Dữ liệu Chứng khoán
+        </div>
+    </div>
+    """
+    render_html(candidate_card_html)
+
+    # Đơn vị tuyển dụng mục tiêu
+    target_company_html = f"""
+    <div style="background: {sb_card_bg}; border: 1px solid {sb_card_border}; border-radius: 10px; padding: 12px; margin-bottom: 14px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,{"0.3" if is_dark else "0.04"});">
+        <div style="font-size: 10px; font-weight: 700; color: {sb_card_sub}; margin-bottom: 6px;">ĐƠN VỊ ỨNG TUYỂN MỤC TIÊU:</div>
+        <img src="{NQS_LOGO_SRC}" alt="Người Quan Sát" style="height: 28px; object-fit: contain;">
+        <div style="font-size: 11.5px; font-weight: 800; color: {sb_card_title}; margin-top: 6px;">Chuyên trang Tài chính Người Quan Sát</div>
+        <div style="font-size: 10px; color: {sb_card_sub};">Vị trí: Chuyên viên Phân tích Dữ liệu Chứng khoán</div>
+    </div>
+    """
+    render_html(target_company_html)
+
+    st.markdown("### ✅ MA TRẬN NĂNG LỰC JD")
+    st.markdown("""
+    - [x] **Data Pipeline:** Phân tách rõ chuỗi Ngày (Giá) vs Quý (BCTC).
+    - [x] **Audit Kế toán:** 100% Cân đối Tài sản & Cơ cấu nợ 5 nhóm.
+    - [x] **Logic Tài chính:** ROE TTM, Lợi nhuận TTM, Δ QoQ & Δ YoY không NaN.
+    - [x] **CAMEL Radar:** Min-Max Scaling [10, 100], so sánh 1–3 bank.
+    - [x] **Báo chí Dữ liệu:** Kịch bản TikTok @nqs.kinhte & Infographics.
+    """)
+
+    st.markdown("---")
+    st.markdown("### 📬 THÔNG TIN LIÊN HỆ")
+    st.caption("• Email: candidate.finance.analyst@gmail.com\n• GitHub: github.com/kieuwangtruong/VN-FINANCE-INSIGHTS\n• Portfolio: Streamlit Cloud Live App")
 
 st.markdown(f"""
 <style>
@@ -155,6 +164,17 @@ st.markdown(f"""
         font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     }}
 
+    /* Triệt tiêu hoàn toàn thanh màu đen ở đỉnh trang (Streamlit Header) */
+    header[data-testid="stHeader"], [data-testid="stHeader"], .stAppHeader {{
+        background-color: {c_bg_app} !important;
+        color: {c_text_primary} !important;
+        border-bottom: 1px solid {c_border_card} !important;
+    }}
+    header[data-testid="stHeader"] svg, [data-testid="stHeader"] button, [data-testid="stHeader"] span {{
+        color: {c_text_primary} !important;
+        fill: {c_text_primary} !important;
+    }}
+
     /* Global App Container */
     .stApp {{
         background-color: {c_bg_app} !important;
@@ -162,9 +182,9 @@ st.markdown(f"""
         transition: background-color 0.25s ease, color 0.25s ease;
     }}
 
-    /* Triệt tiêu hoàn toàn lỗi mất màu chữ / chữ mờ trong Light Mode */
-    {"body, .stApp, .stApp p, .stApp span, .stApp label, .stApp div:not(.badge-alpha):not(.delta-val), .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6, .stApp li, .stApp strong, .stApp b, .stApp [data-testid='stMarkdownContainer'] p, .stApp [data-testid='stMarkdownContainer'] span, .stApp [data-testid='stWidgetLabel'] p, .stApp [data-testid='stWidgetLabel'] label, .stApp [data-baseweb='radio'] label, .stApp [data-baseweb='radio'] div, .stApp [data-baseweb='select'] div, .stApp [data-testid='stMetricLabel'] p, .stApp [data-testid='stMetricValue'] div, .stApp [data-testid='stExpander'] summary, .stApp [data-testid='stExpander'] details, .stApp [data-testid='stExpander'] p { color: #0F172A !important; }" if not is_dark else ""}
-    {"[data-testid='stSidebar'] { background-color: #FFFFFF !important; border-right: 1px solid #E2E8F0 !important; } [data-testid='stSidebar'] * { color: #0F172A !important; }" if not is_dark else "[data-testid='stSidebar'] { background-color: #0E1117 !important; border-right: 1px solid #30363D !important; }"}
+    /* Tương thích chuẩn WCAG AA cho Text trong Light Mode */
+    {"body, .stApp, .stApp p, .stApp span, .stApp label, .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6, .stApp li, .stApp strong, .stApp b, .stApp [data-testid='stMarkdownContainer'] p, .stApp [data-testid='stWidgetLabel'] label, .stApp [data-baseweb='radio'] label, .stApp [data-testid='stMetricLabel'] p { color: #0F172A !important; }" if not is_dark else ""}
+    {"[data-testid='stSidebar'] { background-color: #FFFFFF !important; border-right: 1px solid #E2E8F0 !important; } [data-testid='stSidebar'] p, [data-testid='stSidebar'] span, [data-testid='stSidebar'] label, [data-testid='stSidebar'] li, [data-testid='stSidebar'] h3 { color: #0F172A !important; }" if not is_dark else "[data-testid='stSidebar'] { background-color: #0E1117 !important; border-right: 1px solid #30363D !important; }"}
     {"[data-baseweb='select'] > div { background-color: #FFFFFF !important; border-color: #CBD5E1 !important; color: #0F172A !important; } [data-baseweb='popover'], [data-baseweb='menu'] { background-color: #FFFFFF !important; } [data-baseweb='menu'] * { color: #0F172A !important; } [data-testid='stDataFrame'] { background-color: #FFFFFF !important; border: 1px solid #CBD5E1 !important; border-radius: 8px !important; }" if not is_dark else ""}
 
     /* Top Portfolio Header */
@@ -225,15 +245,16 @@ st.markdown(f"""
         width: 100%;
         overflow: hidden;
         border-radius: 10px;
-        margin-bottom: 20px;
+        margin-bottom: 22px;
         background: {c_ticker_bg};
         border: 1px solid {c_border_card};
-        padding: 8px 0;
+        padding: 10px 0;
     }}
     .ticker-wrapper {{
         display: flex;
         width: max-content;
         animation: marquee 35s linear infinite;
+        align-items: center;
     }}
     .ticker-viewport:hover .ticker-wrapper {{ animation-play-state: paused; }}
     @keyframes marquee {{
@@ -244,15 +265,16 @@ st.markdown(f"""
     .ticker-card {{
         background: {c_bg_card};
         border: 1px solid {c_border_card};
-        border-radius: 8px;
-        padding: 8px 14px;
-        margin: 0 5px;
-        min-width: 180px;
+        border-radius: 9px;
+        padding: 10px 16px;
+        margin: 2px 6px;
+        min-width: 195px;
         cursor: pointer;
         transition: all 0.25s ease;
         display: inline-flex;
         flex-direction: column;
         justify-content: center;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, {"0.2" if is_dark else "0.03"});
     }}
     .ticker-card:hover {{
         border-color: #EE7224 !important;
@@ -389,30 +411,60 @@ st.markdown(f"""
 
     /* Tabs Styling */
     .stTabs [data-baseweb="tab-list"] {{
-        gap: 6px;
-        border-bottom: 1px solid {c_border_card};
-        padding-bottom: 6px;
+        gap: 8px !important;
+        border-bottom: 2px solid {c_border_card} !important;
+        padding: 4px 0 10px 0 !important;
+        overflow-x: auto !important;
     }}
     .stTabs [data-baseweb="tab"] {{
-        height: 42px;
-        white-space: pre-wrap;
-        background-color: {c_tab_bg};
-        border-radius: 8px;
-        color: {c_text_secondary};
-        font-weight: 700;
-        border: 1px solid {c_border_card};
-        padding: 0 18px;
-        transition: all 0.2s ease;
+        height: 44px !important;
+        min-height: 44px !important;
+        white-space: nowrap !important;
+        background-color: {c_tab_bg} !important;
+        border-radius: 8px !important;
+        color: {c_text_secondary} !important;
+        font-weight: 700 !important;
+        font-size: 13px !important;
+        border: 1px solid {c_border_card} !important;
+        padding: 0 18px !important;
+        transition: all 0.2s ease !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        line-height: 1 !important;
+    }}
+    .stTabs [data-baseweb="tab"] p,
+    .stTabs [data-baseweb="tab"] span {{
+        color: inherit !important;
+        font-size: 13px !important;
+        font-weight: 700 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        white-space: nowrap !important;
+        line-height: 1 !important;
     }}
     .stTabs [data-baseweb="tab"]:hover {{
         color: #EE7224 !important;
-        border-color: #EE7224;
+        border-color: #EE7224 !important;
+    }}
+    .stTabs [data-baseweb="tab"]:hover p,
+    .stTabs [data-baseweb="tab"]:hover span {{
+        color: #EE7224 !important;
     }}
     .stTabs [aria-selected="true"] {{
         background: {c_tab_active_bg} !important;
         color: #EE7224 !important;
         border-color: #EE7224 !important;
         box-shadow: 0 2px 8px rgba(238, 114, 36, 0.2) !important;
+    }}
+    .stTabs [aria-selected="true"] p,
+    .stTabs [aria-selected="true"] span {{
+        color: #EE7224 !important;
+    }}
+    .stTabs [data-baseweb="tab-highlight"] {{
+        background-color: #EE7224 !important;
+        height: 3px !important;
+        border-radius: 3px !important;
     }}
 
     /* Download Button */
@@ -534,12 +586,12 @@ render_html(ticker_full_html)
 # =====================================================================
 
 tab_intro, tab1, tab2, tab3, tab4, tab5 = st.tabs([
-    "🎯 Tab 0: Lời Ngỏ Ứng Viên & Ma Trận Năng Lực JD",
-    "📈 Tab 1: Thị Trường VN-Index & Định Giá Chu Kỳ",
-    "🏦 Tab 2: So Sánh Sức Khỏe Ngân Hàng (CAMEL-like)",
-    "🕸️ Tab 3: Benchmark Đối Đầu 1-3 Ngân Hàng (Radar Scaling)",
-    "📑 Tab 4: Đối Soát BCTC & Bằng Chứng Dữ Liệu (100% Khớp)",
-    "🎬 Tab 5: Góc Báo Chí Dữ Liệu & TikTok @nqs.kinhte"
+    "🎯 Tab 0: Năng Lực JD",
+    "📈 Tab 1: Thị Trường & P/E",
+    "🏦 Tab 2: CAMEL Ngân Hàng",
+    "🕸️ Tab 3: Radar Đối Đầu",
+    "📑 Tab 4: Audit BCTC (100%)",
+    "🎬 Tab 5: TikTok @nqs.kinhte"
 ])
 
 
