@@ -46,3 +46,11 @@ venv.bak/
 Thumbs.db
 desktop.ini
 ~$*.docx
+
+# Private CV & Local Documentation (Do not push to GitHub)
+*.docx
+*.pdf
+generate_customized_cv.py
+generate_project_docx.py
+KIEU_QUANG_TRUONG_*
+
