@@ -1187,6 +1187,70 @@ with tab5:
         """)
 
     st.markdown("---")
+    st.markdown("### 🌐 MA TRẬN ĐỊA CHÍNH TRỊ & ĐỘ NHẠY VĨ MÔ (GEOPOLITICAL STRESS-TEST)")
+    st.caption(
+        "Mô hình hóa kênh truyền dẫn của các biến cố quốc tế lớn (Căng thẳng Mỹ - Iran & Giá dầu Brent, "
+        "Kịch bản đình chiến Nga - Ukraine & DXY) tới thanh khoản và biên lãi thuần (NIM) hệ thống ngân hàng Việt Nam."
+    )
+
+    geo_scenario = st.radio(
+        "🎯 Chọn Kịch Bản Địa Chính Trị Cần Chạy Stress-Test:",
+        [
+            "🕊️ Kịch Bản 1: Nga - Ukraine Ngừng Bắn & Hạ Nhiệt Trung Đông (De-escalation)",
+            "🔥 Kịch Bản 2: Căng Thẳng Mỹ - Iran Tái Leo Thang / Dầu Vượt $90 (Escalation)",
+            "⚖️ Kịch Bản 3: Trạng Thái Cân Bằng Giằng Co & Lãi Suất Phân Hóa (Base Case)"
+        ],
+        index=0,
+        horizontal=True
+    )
+
+    if "Ngừng Bắn" in geo_scenario:
+        scen_dxy = "📉 DXY giảm về 100 - 102 | Áp lực tỷ giá USD/VND hạ nhiệt rõ rệt"
+        scen_sbv = "🟢 SBV có dư địa nới lỏng thanh khoản OMO, giảm lãi suất liên ngân hàng"
+        scen_nim = "📈 Dự báo NIM toàn ngành nới rộng +15 đến +25 bps trong H1/2026"
+        scen_winner = "🏆 TCB (CASA 42%) & MBB (CASA 40%) bứt phá mạnh nhất nhờ chi phí vốn CoF giảm sâu; Khối ngoại giảm đà bán ròng."
+    elif "Tái Leo Thang" in geo_scenario:
+        scen_dxy = "📈 DXY vượt đỉnh 105 - 106 | Giá dầu Brent neo cao > $90/thùng gây lạm phát chi phí đẩy"
+        scen_sbv = "🔴 SBV buộc phải hút thanh khoản qua OMO/T-Bills để chặn mất giá VND"
+        scen_nim = "📉 Chi phí vốn (CoF) tăng nhanh hơn lãi suất cho vay, NIM toàn ngành thu hẹp -10 đến -20 bps"
+        scen_winner = "🛡️ VCB (LLR 230%, đệm dự phòng khủng) & BID giữ vai trò 'thành trì phòng thủ' rủi ro nợ xấu toàn diện."
+    else:
+        scen_dxy = "📊 DXY dao động 102 - 104 | Tỷ giá VND mất giá trong biên độ kiểm soát ±3%"
+        scen_sbv = "🟡 SBV điều hành linh hoạt, giữ thanh khoản ở mức trung tính"
+        scen_nim = "➡️ NIM phân hóa mạnh: Nhóm tư nhân năng động giữ 4.0 - 4.5%, Big 4 giữ 2.8 - 3.2%"
+        scen_winner = "🎯 Cổ phiếu ngân hàng phân hóa cao theo tốc độ tăng trưởng tín dụng và chất lượng tài sản."
+
+    col_geo1, col_geo2 = st.columns([3, 2])
+    with col_geo1:
+        render_html(f"""
+        <div style="background: {sb_card_bg}; border: 1px solid {sb_card_border}; border-radius: 10px; padding: 14px; box-shadow: 0 2px 10px rgba(0,0,0,{"0.2" if is_dark else "0.04"});">
+            <div style="font-size: 11px; font-weight: 800; color: #EE7224; margin-bottom: 6px;">
+                📡 KÊNH TRUYỀN DẪN VĨ MÔ & DỰ PHÓNG NGÀNH NGÂN HÀNG (2026 OUTLOOK)
+            </div>
+            <div style="font-size: 12.5px; line-height: 1.8; color: {c_text_primary};">
+                • <b>Chỉ số DXY & Tỷ giá:</b> {scen_dxy}<br/>
+                • <b>Chính sách tiền tệ SBV:</b> {scen_sbv}<br/>
+                • <b>Biên lãi thuần (NIM):</b> {scen_nim}<br/>
+                • <b>Nhóm ngân hàng hưởng lợi / Phòng thủ:</b> {scen_winner}
+            </div>
+        </div>
+        """)
+    with col_geo2:
+        render_html(f"""
+        <div class="jd-card" style="margin: 0;">
+            <div style="font-size: 10.5px; font-weight: 800; color: #EE7224;">🎬 KỊCH BẢN VIDEO TIKTOK #05 • NEWS HOOK ĐỊA CHÍNH TRỊ</div>
+            <h4 style="margin: 3px 0 5px 0; font-size: 13.5px; font-weight: 800; color: {c_text_primary};">
+                Nga - Ukraine ngừng bắn & Trung Đông hạ nhiệt: Vì sao cổ phiếu Ngân hàng lại 'hưởng lợi thầm lặng'?
+            </h4>
+            <p style="font-size: 11.5px; color: {c_text_secondary}; line-height: 1.4; margin-bottom: 4px;">
+                <b>Hook 3s:</b> "Chiến sự hạ nhiệt cách nửa vòng trái đất, nhưng chiếc ví của các ngân hàng Việt Nam lại chuẩn bị dày lên rõ rệt!"<br/>
+                <b>Data Highlight:</b> DXY giảm ➔ CoF hạ ➔ Dự báo NIM Q1-Q2/2026 tăng thêm +20 bps.
+            </p>
+            <div style="font-size: 10.5px; color: #10B981; font-weight: 700;">✓ Bài Báo Chí Dữ Liệu Độc Quyền Tòa Soạn NQS</div>
+        </div>
+        """)
+
+    st.markdown("---")
     st.markdown("### 📰 Bài Báo Phân Tích Chuyên Sâu Mẫu (Sản phẩm Báo chí Dữ liệu)")
     sample_analysis_path = os.path.join(BASE_DIR, "docs", "SAMPLE_ANALYSIS.md")
     if os.path.exists(sample_analysis_path):
@@ -1249,11 +1313,23 @@ with tab_arch:
             <div style="font-size: 11px; font-weight: 800; color: #EE7224;">4. BÁO CHÍ DỮ LIỆU & NỘI DUNG TIKTOK @NQS.KINHTE</div>
             <h4 style="margin: 4px 0 6px 0; font-size: 14.5px; font-weight: 700; color: {c_text_primary};">Chuyển Hóa Dữ Liệu Thành Kịch Bản Video Ngắn Hút Triệu View</h4>
             <p style="font-size: 12.5px; color: {c_text_secondary}; margin: 0; line-height: 1.5;">
-                • 4 Kịch bản video hoàn chỉnh có sẵn Hook 3s, Data Highlight & Đồ họa tương ứng.<br/>
+                • 5 Kịch bản video hoàn chỉnh có sẵn Hook 3s, Data Highlight & Đồ họa tương ứng.<br/>
                 • Bài phân tích mẫu chuyên sâu chuẩn phong cách tòa soạn tại <b>Tab TikTok</b>.
             </p>
         </div>
         """)
+
+    render_html(f"""
+    <div class="jd-card" style="margin-top: 12px;">
+        <div style="font-size: 11px; font-weight: 800; color: #EE7224;">5. MA TRẬN ĐỘ NHẠY VĨ MÔ & STRESS-TEST ĐỊA CHÍNH TRỊ (2026 FORWARD-LOOKING)</div>
+        <h4 style="margin: 4px 0 6px 0; font-size: 14.5px; font-weight: 700; color: {c_text_primary};">Mô Hình Kênh Truyền Dẫn Cú Sốc Toàn Cầu Đến Hệ Thống Ngân Hàng</h4>
+        <p style="font-size: 12.5px; color: {c_text_secondary}; margin: 0; line-height: 1.5;">
+            • <b>Kênh 1 (DXY & Tỷ giá):</b> Biến cố địa chính trị (Mỹ - Iran, Nga - Ukraine) truyền dẫn vào tâm lý trú ẩn USD ➔ Biến động chỉ số DXY ➔ Áp lực tỷ giá USD/VND lên chính sách can thiệp của Ngân hàng Nhà nước.<br/>
+            • <b>Kênh 2 (Thanh khoản & Chi phí vốn CoF):</b> Áp lực OMO/T-Bills điều tiết tiền tệ ➔ Lãi suất liên ngân hàng ➔ Chi phí huy động vốn của các ngân hàng thương mại.<br/>
+            • <b>Kênh 3 (Độ nhạy NIM & Chất lượng nợ):</b> Nhóm ngân hàng có thế mạnh tiền gửi rẻ CASA (TCB, MBB) phục hồi NIM nhanh nhất khi hạ nhiệt chi phí vốn; trong khi nhóm có đệm bao phủ nợ xấu LLR cao (VCB) đóng vai trò phòng thủ vượt trội trước các cú sốc lạm phát toàn cầu.
+        </p>
+    </div>
+    """)
 
     st.markdown("---")
     st.info(

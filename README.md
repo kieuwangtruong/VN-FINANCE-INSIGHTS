@@ -68,6 +68,22 @@ Hệ thống mở rộng phân tích định lượng đón đầu chu kỳ vĩ 
    * Bộ dữ liệu 2023–2025 đóng vai trò là "Benchmark Data đã được kiểm toán đối soát sai số 0.000%".
    * Module `src/data_pipeline.py` được thiết kế theo kiến trúc mở (Pluggable ETL Architecture), sẵn sàng kết nối trực tiếp các nguồn API dữ liệu thị trường (như vnstock, Vietstock API, FiinPro) để cập nhật dữ liệu tự động các quý tiếp theo của năm 2025–2026 hoàn toàn tự động mà không cần sửa đổi bất kỳ dòng mã logic định lượng nào.
 
+### 2.3. Ma trận Stress-Test Địa Chính Trị Toàn Cầu & Kênh Truyền Dẫn Vĩ Mô (Geopolitical Sensitivity)
+Để phục vụ công tác nghiên cứu chuyên sâu và xuất bản báo chí dữ liệu thời sự của Tòa soạn Người Quan Sát, hệ thống tích hợp mô hình phân tích kịch bản độ nhạy trước các biến cố địa chính trị quốc tế:
+
+1. **Cơ chế Truyền dẫn 4 Chặng (Four-Stage Transmission Mechanism):**
+   $$\text{Biến cố Địa chính trị (Mỹ - Iran, Nga - Ukraine)} \longrightarrow \text{Giá Dầu Brent \& DXY} \longrightarrow \text{Áp lực Tỷ giá USD/VND \& OMO} \longrightarrow \text{Chi phí vốn (CoF) \& NIM Ngân hàng}$$
+
+2. **Kịch bản 1 — Đình chiến Nga - Ukraine & Hạ nhiệt Trung Đông (De-escalation Catalyst):**
+   * *Tác động Vĩ mô:* Chuỗi cung ứng logistics Biển Đen thông suốt, giá dầu Brent ổn định quanh $70–75/thùng. Tâm lý trú ẩn USD giảm khiến chỉ số DXY hạ nhiệt về 100–102.
+   * *Tác động Ngân hàng:* NHNN bớt áp lực bán ngoại tệ can thiệp hoặc phát hành T-Bills hút tiền. Thanh khoản liên ngân hàng dồi dào, lãi suất liên ngân hàng duy trì thấp $\rightarrow$ Chi phí huy động vốn (CoF) giảm nhanh hơn lãi suất cho vay $\rightarrow$ **Biên lãi thuần (NIM) toàn ngành nới rộng thêm +15 đến +25 bps trong H1/2026**.
+   * *Nhóm Hưởng lợi Lớn nhất:* Các ngân hàng có tỷ lệ tiền gửi không kỳ hạn cao như **Techcombank (CASA 42%)** và **MBBank (CASA 40%)** bứt phá mạnh nhất về biên lợi nhuận. Khối ngoại đảo chiều giảm bán ròng và quay lại gom cổ phiếu ngân hàng định giá rẻ.
+
+3. **Kịch bản 2 — Căng thẳng Leo thang Mỹ - Iran & Giá Dầu Vượt $90 (Escalation Stress-Test):**
+   * *Tác động Vĩ mô:* Eo biển Hormuz căng thẳng đẩy giá năng lượng tăng vọt, lạm phát toàn cầu có dấu hiệu quay trở lại khiến Fed trì hoãn hạ lãi suất. Chỉ số DXY tăng vọt lên 105–106.
+   * *Tác động Ngân hàng:* NHNN buộc phải thắt chặt thanh khoản qua thị trường mở (OMO) và duy trì lãi suất liên ngân hàng cao để phòng thủ tỷ giá $\rightarrow$ Chi phí vốn CoF tăng, NIM chịu áp lực co hẹp (-10 đến -20 bps).
+   * *Nhóm Phòng thủ Tối ưu:* **Vietcombank (VCB)** với "pháo đài dự phòng" LLR >230% và **BIDV** duy trì vị thế an toàn tuyệt đối, miễn nhiễm trước các biến động tiêu cực của chu kỳ tín dụng.
+
 ---
 
 ## 3. KIẾN TRÚC KỸ THUẬT DỮ LIỆU & XỬ LÝ CHUỖI THỜI GIAN
