@@ -518,16 +518,16 @@ header_html = f"""
             Hệ thống giám sát vĩ mô, định lượng chỉ số CAMEL và kiểm toán BCTC — <b>Chuyên trang Tài chính Người Quan Sát</b>
         </div>
     </div>
-    <div style="text-align: right;">
-        <div style="background: {sb_card_bg}; border: 1px solid {sb_card_border}; padding: 6px 14px; border-radius: 8px; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 2px 8px rgba(0,0,0,{"0.2" if is_dark else "0.05"});">
-            <div style="text-align: right;">
-                <div style="font-size: 9px; font-weight: 800; color: {c_text_secondary};">CƠ QUAN PHÁT HÀNH:</div>
-                <div style="font-size: 11px; font-weight: 800; color: {c_text_primary};">Người Quan Sát (nguoiquansat.vn)</div>
-            </div>
-            <img src="{NQS_LOGO_SRC}" alt="Người Quan Sát Logo" style="height: 26px; object-fit: contain;">
-        </div>
-        <div style="font-size: 11px; color: {c_text_secondary}; margin-top: 5px; font-family: 'JetBrains Mono', monospace;">
-            Trạng thái: <b>100% Cân Đối Kiểm Toán BCTC</b>
+    <div style="display: flex; align-items: center; justify-content: flex-end; flex-shrink: 0;">
+        <div style="background: {sb_card_bg}; border: 1px solid {sb_card_border}; padding: 5px 12px; border-radius: 8px; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 1px 4px rgba(0,0,0,{"0.12" if is_dark else "0.04"});">
+            <a href="https://nguoiquansat.vn" target="_blank" title="Tòa soạn Người Quan Sát (nguoiquansat.vn)" style="display: inline-flex; align-items: center; text-decoration: none;">
+                <img src="{NQS_LOGO_SRC}" alt="Người Quan Sát Logo" style="height: 22px; object-fit: contain;">
+            </a>
+            <span style="height: 14px; width: 1px; background: {c_border_card};"></span>
+            <span style="font-size: 10.5px; font-weight: 700; color: #10B981; font-family: 'JetBrains Mono', monospace; white-space: nowrap; display: inline-flex; align-items: center; gap: 5px;">
+                <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #10B981;"></span>
+                100% Cân Đối BCTC
+            </span>
         </div>
     </div>
 </div>
